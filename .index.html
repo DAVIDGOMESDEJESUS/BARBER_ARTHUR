@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Arthur</title>
+    <style>
+        body {
+            margin: 10px;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            line-height: 2.0em;
+            color: #fff;
+            background: url(https://th.bing.com/th/id/OIP.A0pX30JiAPBDSHKU_9hrJwHaJu?pid=ImgDet&w=712&h=935&rs=1) center;
+            width: 100%;
+            display: table;
+        }
+
+        h1, h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            font-weight: bold;
+            color: #fafafa;
+            margin-top: 10px;
+        }
+
+        p {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            margin-top: 5px;
+        }
+
+        .fa-whatsapp {
+            margin-top: 16px;
+        }
+
+        table {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .enviar {
+            margin-top: 10px;
+        }
+
+        #alerta {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h1>BARBER ARTHUR</h1>
+        <h2>Sejam, Bem-vindos!</h2>
+        <p>Sua barbearia de confiança</p>
+    </center>
+
+    <form id="barberForm">
+        <label for="nome">Digite seu nome</label>
+        <input type="text" name="text" id="nome" class="input-padrao" required>
+
+        <fieldset>
+            <legend>Marque seu horário:</legend>
+            <label for="data">Data:</label>
+            <input type="date" name="data" id="data" required>
+
+            <label for="hora">Hora:</label>
+            <input type="time" name="hora" id="hora" required>
+        </fieldset>
+
+        <center><button type="button" onclick="marcarHorario()">Enviar</button></center>
+    </form>
+
+    <a href="#" class="whatsapp-link" id="whatsappLink">
+        <i class="fa fa-whatsapp"></i>
+    </a>
+
+    <div id="alerta"></div>
+
+    <script>
+        // Definindo um array para armazenar os horários marcados
+        var horariosMarcados = [];
+
+        // Função para definir o atributo 'min' do input de data para a data atual
+        function setMinDate() {
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = (now.getMonth() + 1).toString().padStart(2, '0'); // Adiciona zero à esquerda se necessário
+            var day = now.getDate().toString().padStart(2, '0'); // Adiciona zero à esquerda se necessário
+            var currentDate = year + "-" + month + "-" + day;
+
+            document.getElementById('data').setAttribute('min', currentDate);
+        }
+
+        // Função para atualizar o atributo 'min' toda vez que a data mudar
+        document.getElementById('data').addEventListener('change', function () {
+            setMinTime();
+            setMinDate();
+        });
+
+        // Função para marcar o horário e redirecionar para o WhatsApp
+        function marcarHorario() {
+            var nome = document.getElementById('nome').value;
+            var data = document.getElementById('data').value;
+            var hora = document.getElementById('hora').value;
+            var horario = data + ' ' + hora;
+
+            // Verificar se o horário já está marcado para mais de duas pessoas
+            var horarioMarcadoCount = horariosMarcados.filter(function (item) {
+                return item === horario;
+            }).length;
+
+            if (horarioMarcadoCount >= 2) {
+                document.getElementById('alerta').innerText = 'Desculpe, este horário já está cheio. Por favor, escolha outro horário.';
+                return;
+            }
+
+            // Adicionar o horário ao array de horários marcados
+            horariosMarcados.push(horario);
+
+            var mensagem = "Marcar horário confirmado para " + hora + " no dia " + data + " para " + nome;
+            var mensagemEncoded = encodeURIComponent(mensagem);
+            var link = "https://wa.me/5561992517218?text=" + mensagemEncoded;
+
+            // Abrir o link do WhatsApp em uma nova aba
+            window.open(link, '_blank');
+        }
+    </script>
+</body>
+</html>
