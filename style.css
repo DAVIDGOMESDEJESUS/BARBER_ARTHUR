@@ -1,0 +1,65 @@
+body {
+    margin: 10px;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 2.0em;
+    color: #fff;
+    background: url(https://th.bing.com/th/id/OIP.A0pX30JiAPBDSHKU_9hrJwHaJu?pid=ImgDet&w=712&h=935&rs=1) center;
+    width: 100%;
+    display: table;
+  }
+
+  h1, h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fafafa;
+    margin-top: 10px;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  form {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+
+  input, select {
+    margin-top: 5px;
+  }
+
+  .whatsapp-link {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 1px 1px 2px #888;
+    z-index: 1000;
+  }
+
+  .fa-whatsapp {
+    margin-top: 16px;
+  }
+
+  table {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .enviar {
+    margin-top: 10px;
+  }
